@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- Enable Annotation based configuration -->
+	<context:annotation-config />
+
+	<bean name="employee" class="com.springautowired.model.Employee">
+		<property name="name" value="Raj"></property>
+	</bean>
+	
+	<bean name="employee1" class="com.springautowired.model.Employee"
+		autowire-candidate="false">
+		<property name="name" value="Saurabh Shah"></property>
+	</bean>
+
+	<!-- autowiring byName, bean name should be same as the property name -->
+	<bean name="employeeServiceByName" class="com.springautowired.service.EmployeeService"
+		autowire="byName" />
+
+	<!-- autowiring byType, there should be only one bean definition for the 
+		mapping -->
+	<bean name="employeeServiceByType" class="com.springautowired.service.EmployeeService"
+		autowire="byType" />
+
+	<!-- autowiring by constructor -->
+	<bean name="employeeServiceConstructor" class="com.springautowired.service.EmployeeService"
+		autowire="constructor" />
+
+	<!-- using @Autowiring annotation in below beans, byType and constructor -->
+	<bean name="employeeAutowiredByTypeService"
+		class="com.springautowired.service.EmployeeAutowiredByTypeService" />
+	<bean name="employeeAutowiredByConstructorService"
+		class="com.springautowired.service.EmployeeAutowiredByConstructorService" />
+
+
+
+
+</beans>	
